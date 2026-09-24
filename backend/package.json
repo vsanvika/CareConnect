@@ -1,0 +1,26 @@
+{
+  "name": "careconnect-backend",
+  "version": "1.0.0",
+  "description": "CareConnect AI-Enabled Home Services Booking & Operations Platform Backend",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node seed/seedData.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.0.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "express-rate-limit": "^8.7.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb-memory-server": "^9.1.6",
+    "mongoose": "^8.2.1",
+    "multer": "^1.4.5-lts.1"
+  }
+}
