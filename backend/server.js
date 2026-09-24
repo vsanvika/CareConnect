@@ -49,14 +49,15 @@ const defaultAllowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
   'http://127.0.0.1:3000',
+  'https://care-connect-mu-neon.vercel.app',
   'https://care-connect-94bg0rvwv-vsanvikas-projects.vercel.app',
   'https://care-connect-2z9z8vnnp-vsanvikas-projects.vercel.app'
 ];
 
-const configuredOrigins = (process.env.CLIENT_ORIGINS || defaultAllowedOrigins.join(','))
+const configuredOrigins = (process.env.CLIENT_ORIGINS || '')
   .split(',').map((origin) => origin.trim()).filter(Boolean);
 
-const corsOriginAllowlist = new Set(configuredOrigins);
+const corsOriginAllowlist = new Set([...defaultAllowedOrigins, ...configuredOrigins]);
 const isAllowedOrigin = (origin) => {
   if (!origin) return true;
   if (corsOriginAllowlist.has(origin)) return true;
