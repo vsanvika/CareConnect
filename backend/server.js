@@ -45,7 +45,14 @@ if (!process.env.JWT_SECRET) {
   console.warn('[Security] JWT_SECRET is not configured. Authentication endpoints will not issue tokens.');
 }
 
-const allowedOrigins = (process.env.CLIENT_ORIGINS || 'http://localhost:5173,http://localhost:3000,http://127.0.0.1:3000')
+const defaultAllowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+  'https://care-connect-94bg0rvwv-vsanvikas-projects.vercel.app'
+];
+
+const allowedOrigins = (process.env.CLIENT_ORIGINS || defaultAllowedOrigins.join(','))
   .split(',').map((origin) => origin.trim()).filter(Boolean);
 
 // Middlewares
