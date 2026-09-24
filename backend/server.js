@@ -87,6 +87,14 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', service: 'CareConnect API', timestamp: new Date() });
 });
 
+const frontendDistPath = path.resolve(__dirname, '../frontend/dist');
+if (process.env.NODE_ENV === 'production' && fs.existsSync(frontendDistPath)) {
+  app.use(express.static(frontendDistPath));
+  app.get(/^(?!\/api).*/, (req, res) => {
+    res.sendFile(path.join(frontendDistPath, 'index.html'));
+  });
+}
+
 // Error Handler Middleware
 app.use(errorHandler);
 
